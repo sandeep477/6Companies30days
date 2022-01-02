@@ -1,0 +1,22 @@
+Problem link:https://practice.geeksforgeeks.org/problems/overlapping-rectangles1924/1
+class Solution {
+  public:
+    int doOverlap(int L1[], int R1[], int L2[], int R2[]) {
+        
+       if(max(abs(R2[1]-L1[1]),abs(R1[1]-L2[1]))< abs(R2[1]-L2[1])+abs(R1[1]-L1[1]))
+       {
+           if(max(abs(R2[0]-L1[0]),abs(R1[0]-L2[0]))<= abs(R2[0]-L2[0])+abs(R1[0]-L1[0]))
+           {
+               return true;
+           }
+       }
+         if(max(abs(R2[1]-L1[1]),abs(R1[1]-L2[1]))<= abs(R2[1]-L2[1])+abs(R1[1]-L1[1]))
+       {
+           if(max(abs(R2[0]-L1[0]),abs(R1[0]-L2[0]))< abs(R2[0]-L2[0])+abs(R1[0]-L1[0]))
+           {
+               return true;
+           }
+       }
+       return false;
+    }
+};
