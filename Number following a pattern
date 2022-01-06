@@ -1,0 +1,33 @@
+Problem Link : https://practice.geeksforgeeks.org/problems/number-following-a-pattern3126/1#
+
+class Solution{   
+public:
+    string printMinNumberForPattern(string S){
+        string ans="";int n= S.length();
+        for(int i=0;i<n+1;i++)
+        {
+            ans+=((i+1)+'0');
+        }int start=0,end=0;
+        while(end<n)
+        {
+            if(S[end]=='D')
+            {
+                start=end;
+                while(end<n && S[end]=='D')
+                {
+                    end++;
+                }
+                string temp = ans.substr(start,end-start+1);
+                reverse(temp.begin(),temp.end());
+                string temp2 ="";
+                if(end<n)
+                   temp2=ans.substr(end+1);
+                ans  = ans.substr(0,start);
+                ans +=temp;
+                ans +=temp2;
+            }
+            end++;
+        }
+        return ans;
+    }
+};
