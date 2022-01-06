@@ -1,0 +1,32 @@
+Problem Link : https://practice.geeksforgeeks.org/problems/total-decoding-messages1235/1/#
+
+class Solution {
+	public:
+		int dfs(string str,int idx,int n,vector<int>&dp)
+    {int  ans=0;
+        if(idx==n)
+        {
+            return 1;
+        }
+     if(dp[n-idx]!=-1)return dp[n - idx];
+         if((str[idx])>'0')
+        {
+            ans = (ans%1000000007 + dfs(str,idx+1,n,dp)%1000000007)%1000000007;
+        }
+        if(idx < n-1)
+        { int num = (str[idx]-'0')*10+(str[idx+1]-'0');
+            if(num <27 && num >=10)
+            {
+                ans= (ans%1000000007+dfs(str,idx+2,n,dp)%1000000007)%1000000007;
+            }
+        }
+        return dp[n-idx]= (ans%1000000007);
+    }
+		int CountWays(string str){
+		    int n =str.length();
+		    vector<int>dp(n+1,-1);
+        return dfs(str,0,str.length(),dp)%1000000007;
+		 
+		}
+
+};
