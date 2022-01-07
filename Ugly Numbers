@@ -1,0 +1,33 @@
+Problem Link :https://practice.geeksforgeeks.org/problems/ugly-numbers2254/1/
+
+class Solution{
+public:	
+	// #define ull unsigned long long
+	/* Function to get the nth ugly number*/
+	ull min(ull a,ull b)
+	{
+	    return a<b ? a:b;
+	}
+	ull getNthUglyNo(int n) {
+	    if(n==1)return 1;
+	    if(n==2)return 2;
+	    if(n==3)return 3;
+	    int i=1,j=1,k=0;
+	    vector<ull>dp(n);
+	    dp[0]=1;
+	    dp[1]=2;
+	    dp[2]=3;
+	    for(int p=3;p<n;p++)
+	    {
+	        ull a = dp[i]*2;
+	        ull b = dp[j]*3;
+	        ull c = dp[k]*5;
+	        ull res = min(a,min(b,c));
+	        if(a==res)i++;
+	        if(b==res)j++;
+	        if(c==res)k++;
+	        dp[p]=res;
+	    }
+	    return dp[n-1];
+	}
+};
